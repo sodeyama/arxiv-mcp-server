@@ -252,11 +252,10 @@ ${paper.abstract}
 
   private setupErrorHandling() {
     this.server.onerror = (error) => {
-      console.error('[MCP Error]', error);
+      // Silent error handling for MCP protocol compliance
     };
 
     process.on('SIGINT', async () => {
-      console.log('\nShutting down arXiv MCP server...');
       await this.server.close();
       process.exit(0);
     });
@@ -271,6 +270,5 @@ ${paper.abstract}
 // Start the server
 const server = new ArxivMCPServer();
 server.run().catch((error) => {
-  console.error('Failed to start server:', error);
   process.exit(1);
 });
