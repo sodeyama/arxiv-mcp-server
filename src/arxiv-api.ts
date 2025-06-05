@@ -28,8 +28,6 @@ export class ArxivAPI {
     }
 
     const url = `${this.baseUrl}?${searchParams.toString()}`;
-    
-    console.log(`Searching arXiv with URL: ${url}`);
 
     try {
       const response = await this.makeRequestWithRetry(url);
@@ -57,7 +55,6 @@ export class ArxivAPI {
       return response;
     } catch (error) {
       if (retries < this.maxRetries) {
-        console.log(`Request failed, retrying in ${this.retryDelay}ms... (attempt ${retries + 1}/${this.maxRetries})`);
         await new Promise(resolve => setTimeout(resolve, this.retryDelay));
         return this.makeRequestWithRetry(url, retries + 1);
       }
