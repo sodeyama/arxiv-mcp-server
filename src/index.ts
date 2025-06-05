@@ -110,8 +110,6 @@ class ArxivMCPServer {
             );
         }
       } catch (error) {
-        console.error(`Error handling tool call ${name}:`, error);
-        
         if (error instanceof McpError) {
           throw error;
         }
@@ -141,15 +139,11 @@ class ArxivMCPServer {
       );
     }
 
-    console.log(`Searching for papers with query: "${query}"`);
-
     // Parse the natural language query
     const parsed = this.queryParser.parseQuery(query);
-    console.log('Parsed query:', JSON.stringify(parsed, null, 2));
 
     // Build arXiv query string
     const arxivQuery = this.queryParser.buildArxivQuery(parsed);
-    console.log(`arXiv query string: "${arxivQuery}"`);
 
     // Prepare search parameters
     const searchParams: ArxivSearchParams = {
@@ -210,7 +204,7 @@ class ArxivMCPServer {
       );
     }
 
-    console.log(`Fetching paper with ID: ${arxiv_id}`);
+
 
     const paper = await this.arxivAPI.getPaperById(arxiv_id);
 
@@ -271,7 +265,6 @@ ${paper.abstract}
   async run() {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error('arXiv MCP server running on stdio');
   }
 }
 
