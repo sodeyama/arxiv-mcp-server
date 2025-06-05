@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "arxiv-search": {
+      "command": "node",
+      "args": ["/path/to/arxiv-mcp-server/dist/index.js"],
+      "env": {}
+    }
+  }
+}
