@@ -36,7 +36,6 @@ export class ArxivAPI {
       const result = await this.parseArxivResponse(xmlData);
       return result;
     } catch (error) {
-      console.error('Error searching arXiv:', error);
       throw new Error(`Failed to search arXiv: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
@@ -90,7 +89,6 @@ export class ArxivAPI {
         itemsPerPage,
       };
     } catch (error) {
-      console.error('Error parsing arXiv XML response:', error);
       throw new Error(`Failed to parse arXiv response: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
@@ -150,7 +148,6 @@ export class ArxivAPI {
 
       return result.papers.length > 0 ? result.papers[0] : null;
     } catch (error) {
-      console.error(`Error fetching paper ${arxivId}:`, error);
       throw new Error(`Failed to fetch paper ${arxivId}: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
